@@ -30,19 +30,29 @@ body {
     background: radial-gradient(at top, var(--bg-gradient-one), var(--bg-gradient-two));
     /* background: radial-gradient(circle farthest-side at center top, rgba(31, 55, 86, 1) 12%, rgba(20, 21, 57, 1) 100%); */
     min-height: 100vh;
+    text-transform: uppercase;
+}
+
+.container {
+    margin: 0 auto;
+    position: relative;
+    width: 55%;
+    /* max-width: 700px; */ /** commented out to allow for responsive design */
 }
 
 .scores-header {
     border: 2px solid var(--header-outline);
     border-radius: 10px;
     padding: 32px;
-    width: 50%;
-    max-width: 72%;
     text-align: center;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 40px auto 20px;
+    margin: 40px 0 20px;
+}
+
+.logo {
+    height: 100%;
 }
 
 .scores {
@@ -50,15 +60,16 @@ body {
     border-radius: 10px;
     padding: 10px 40px;
     max-width: 50%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    line-height: 1;
 }
 
 .score-heading {
     text-align: center;
-    margin-bottom: 10px;
     color: var(--score-text);
     font-size: 18px;
     font-weight:  600;
@@ -67,19 +78,19 @@ body {
 #score-count {
     text-align: center;
     color: var(--dark-text);
-    font-size: 40px;
+    font-size: 64px;
     font-weight: 700;
 }
 
-.choices{
+.game {
     background-image: url('assets/bg-triangle.svg');
-    background-size: contain;
+    /* background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 }
 

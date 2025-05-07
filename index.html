@@ -11,29 +11,35 @@
     <title>Rock Paper Scissors</title>
 </head>
 <body>
-    <main class="scores-header">
-        <div class="scores-logo">
-            <img src="assets/logo.svg" alt="rock paper scissors logo">
-        </div>
-        <div class="scores">
-            <h6 class="score-heading">SCORE</h6>
-            <span id="score-count">0</span>
-        </div>
-    </main>
-
-    <section class="choices">
-        <div class="choices-container">
-            <div class="paper choice">
-                <img src="assets/icon-paper.svg" alt="paper icon">
+    <div class="container">
+        <main class="scores-header">
+            <div class="scores-logo">
+                <img src="assets/logo.svg" class="logo" alt="rock paper scissors logo">
             </div>
-            <div class="scissors choice">
-                <img src="assets/icon-scissors.svg" alt="scissors icon">
+            <div class="scores">
+                <h6 class="score-heading">SCORE</h6>
+                <span id="score-count">0</span>
             </div>
-            <div class="rock choice">
-                <img src="assets/icon-rock.svg" alt="rock icon">
-            </div>
-        </div>
-    </section>
+        </main>
+    
+        <section class="game">
+            <button class="choice-btn" data-choice="paper">
+                <div class="paper choice">
+                    <img src="assets/icon-paper.svg" alt="paper icon">
+                </div>
+            </button>
+            <button class="choice-btn" data-choice="scissors">
+                <div class="scissors choice">
+                    <img src="assets/icon-scissors.svg" alt="scissors icon">
+                </div>
+            </button>
+            <button class="choice-btn" data-choice="rock">
+                <div class="rock choice">
+                    <img src="assets/icon-rock.svg" alt="rock icon">
+                </div>
+            </button>
+        </section>
+    </div>
     
 </body>
 </html>
