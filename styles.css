@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;600;700&display=swap');
+
+:root {
+    --scissors-gradient-one: hsl(39, 89%, 49%);
+    --scissors-gradient-two: hsl(40, 84%, 53%);
+    --paper-gradient-one: hsl(230, 89%, 62%);
+    --paper-gradient-two: hsl(230, 89%, 65%);
+    --rock-gradient-one: hsl(349, 71%, 52%);
+    --rock-gradient-two: hsl(349, 70%, 56%);
+    --lizard-gradient-one: hsl(261, 73%, 60%);
+    --lizard-gradient-two: hsl(261, 72%, 63%);
+    --spock-gradient-one: hsl(189, 59%, 53%);
+    --spock-gradient-two: hsl(189, 58%, 57%);
+    --dark-text: hsl(229, 25%, 31%);
+    --score-text: hsl(229, 64%, 46%);
+    --score-background: hsl(0, 0%, 98%);
+    --header-outline: hsl(217, 16%, 45%);
+    --bg-gradient-one: hsl(214, 47%, 23%);
+    --bg-gradient-two: hsl(237, 49%, 15%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    background: radial-gradient(at top, var(--bg-gradient-one), var(--bg-gradient-two));
+    /* background: radial-gradient(circle farthest-side at center top, rgba(31, 55, 86, 1) 12%, rgba(20, 21, 57, 1) 100%); */
+    min-height: 100vh;
+}
+
+.scores-header {
+    border: 2px solid var(--header-outline);
+    border-radius: 10px;
+    padding: 32px;
+    width: 50%;
+    max-width: 72%;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px auto 20px;
+}
+
+.scores {
+    background-color: var(--score-background);
+    border-radius: 10px;
+    padding: 10px 40px;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.score-heading {
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--score-text);
+    font-size: 18px;
+    font-weight:  600;
+}
+
+#score-count {
+    text-align: center;
+    color: var(--dark-text);
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.choices{
+    background-image: url('assets/bg-triangle.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
