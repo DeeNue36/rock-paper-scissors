@@ -183,7 +183,51 @@ body {
     box-shadow: 0 8px var(--shadow-outer), 0 8px var(--rock-gradient-two);
 }
 
-/** Rules Section */
+/** Result Section */
+.results {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    grid-template-areas: 
+        "player-picked-title house-picked-title"
+        "player-picked house-picked"
+    ;
+    max-width: 1032px;
+    margin: 0 auto;
+}
+
+.player-choice {
+    grid-area: player-picked-title;
+}
+
+.house-choice {
+    grid-area: house-picked-title;
+}
+
+.player-choice, 
+.house-choice {
+    font-size: 24px;
+    letter-spacing: 1.6px;
+    padding: 64px 0 128px;
+}
+
+.player-choice-result {
+    grid-area: player-picked;
+}
+
+.house-choice-result {
+    grid-area: house-picked;
+}
+
+.player-choice-result, .house-choice-result {
+    min-width: 160px;
+    min-height: 160px;
+    background: #16213d;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+/** Rules Button Section */
 
 .rules {
     display: flex;

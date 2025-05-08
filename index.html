@@ -12,6 +12,7 @@
 </head>
 <body>
     <div class="container">
+        <!-- Player Score Section -->
         <main class="scores-header">
             <div class="scores-logo">
                 <img src="assets/logo.svg" class="logo" alt="rock paper scissors logo" />
@@ -22,6 +23,7 @@
             </div>
         </main>
     
+        <!-- Game Section -->
         <section class="game">
             <button class="choice-btn" data-choice="paper">
                 <div class="paper choice">
@@ -41,10 +43,21 @@
         </section>
     </div>
 
+    <!-- Game Results Section -->
+    <section class="results">
+        <h2 class="player-choice">You Picked</h2>
+        <h2 class="house-choice">The House Picked</h2>
+
+        <div class="result player-choice-result"></div>
+        <div class="result house-choice-result"></div>
+    </section>
+
+    <!-- Rule Button -->
     <section class="rules">
         <button class="rules-btn" tabindex="1">Rules</button>
     </section>
 
+    <!-- Rules Modal -->
     <div class="modal-container">
         <div class="modal">
             <header class="modal-header">
