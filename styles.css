@@ -141,6 +141,10 @@ body {
     grid-area: rock;
 }
 
+.choice img {
+    transform: scale(1.5);
+}
+
 .choice::before, 
 .choice::after {
     content: '';
@@ -177,5 +181,91 @@ body {
 .rock.choice::before {
     background: linear-gradient(to bottom, var(--rock-gradient-one), var(--rock-gradient-two));
     box-shadow: 0 8px var(--shadow-outer), 0 8px var(--rock-gradient-two);
+}
+
+/** Rules Section */
+
+.rules {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 24px 48px;
+}
+
+.rules-btn {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-transform: uppercase; /* or text-transform: inherit; */
+    font-family: inherit;
+    font-size: 20.8px;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+    color: var(--score-background);
+    border: 2px solid var(--header-outline);
+    padding: 10px 40px;
+    border-radius: 10px;
+}
+
+.rules-btn:focus {
+    border: 2px solid var(--score-background);
+}
+
+/** Rules Modal */
+
+.modal-container {
+    position: fixed; /* or absolute — element does have a parent hence it uses 'body' which achieves the same effect */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    background: var(--shadow-outer);
+    opacity: 0;
+    transition: opacity .4s ease-in-out;
+    pointer-events: none;
+}
+
+.modal {
+    background: var(--score-background);
+    border-radius: 10px;
+    /* padding: 32px;
+    width: 500px;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 32px 32px 16px;
+}
+
+.modal-heading {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--dark-text);
+}
+
+.close-modal-btn {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.rules-img {
+    padding: 32px 64px;
+}
+
+.show-modal {
+    opacity: 1;
+    pointer-events: initial;
 }
 
