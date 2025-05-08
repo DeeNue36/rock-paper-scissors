@@ -231,13 +231,6 @@ body {
 .modal {
     background: var(--score-background);
     border-radius: 10px;
-    /* padding: 32px;
-    width: 500px;
-    max-width: 640px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
 }
 
 .modal-header {
