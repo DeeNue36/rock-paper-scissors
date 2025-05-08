@@ -131,7 +131,18 @@ body {
     box-shadow: inset 0 8px var(--shadow-inner);
 }
 
-.choice::before {
+.choice-btn[data-choice="paper"] {
+    grid-area: paper;
+}
+.choice-btn[data-choice="scissors"] {
+    grid-area: scissors;
+}
+.choice-btn[data-choice="rock"] {
+    grid-area: rock;
+}
+
+.choice::before, 
+.choice::after {
     content: '';
     position: absolute;
     left: -15%;
@@ -140,6 +151,17 @@ body {
     height: 130%;
     border-radius: 50%;
     z-index: -1;
+}
+
+.choice::after {
+    opacity: 0;
+    transition: opacity .4s ease-in;
+}
+
+.choice-btn:focus .choice::after {
+    opacity: 1;
+    box-shadow: 0 0 0 32px #223351;
+    z-index: -2;
 }
 
 .paper.choice::before {
@@ -155,15 +177,5 @@ body {
 .rock.choice::before {
     background: linear-gradient(to bottom, var(--rock-gradient-one), var(--rock-gradient-two));
     box-shadow: 0 8px var(--shadow-outer), 0 8px var(--rock-gradient-two);
-}
-
-.choice-btn[data-choice="paper"] {
-    grid-area: paper;
-}
-.choice-btn[data-choice="scissors"] {
-    grid-area: scissors;
-}
-.choice-btn[data-choice="rock"] {
-    grid-area: rock;
 }
 
