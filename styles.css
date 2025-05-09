@@ -44,8 +44,8 @@ body {
     /* max-width: 700px; */ /** commented out to allow for responsive design */
 }
 
-/** Score Section */
 
+/** Score Section */
 .scores-header {
     border: 2px solid var(--header-outline);
     border-radius: 10px;
@@ -88,8 +88,8 @@ body {
     font-weight: 700;
 }
 
-/** Game Section*/
 
+/** Game Section */
 .game {
     position: relative;
     display: grid;
@@ -183,8 +183,8 @@ body {
     box-shadow: 0 8px var(--shadow-outer), 0 8px var(--rock-gradient-two);
 }
 
-/** Result Section */
 
+/** Results Section */
 .results {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -229,8 +229,53 @@ body {
     z-index: -1;
 }
 
-/** Rules Button Section */
 
+/** Results Section — Win/Lose Message & Play Again Button */
+.winner-or-loser {
+    grid-area: winner-or-loser;
+    display: grid;
+    place-items: center;
+}
+
+.win-lose-text {
+    font-size: 56px;
+    padding-bottom: 24px;
+}
+
+.new-game-btn {
+    background: var(--light-text);
+    font-family: inherit;
+    text-transform: inherit;
+    padding: 16px 64px;
+    /* border: none; */
+    border: 2px solid transparent;
+    outline: none;
+    cursor: pointer;
+    border-radius: 10px;
+    color: var(--dark-text);
+    letter-spacing: 1.6px;
+    font-weight: 600;
+    font-size: 20.8px;
+}
+
+.new-game-btn:hover {
+    color: var(--rock-gradient-one);
+}
+
+.new-game-btn:focus {
+    border: 2px solid var(--header-outline);
+}
+
+/** Results Section — Display Results,Winner/Loser & Play Again Button */
+.results.show-winner-or-loser {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 
+        "player-picked-title . house-picked-title"
+        "player-picked winner-or-loser house-picked"
+    ;
+}
+
+/** Rules Button Section */
 .rules {
     display: flex;
     justify-content: flex-end;
@@ -240,7 +285,6 @@ body {
 
 .rules-btn {
     background: transparent;
-    border: none;
     outline: none;
     cursor: pointer;
     text-transform: uppercase; /* or text-transform: inherit; */
@@ -258,8 +302,8 @@ body {
     border: 2px solid var(--score-background);
 }
 
-/** Rules Modal */
 
+/** Rules Modal */
 .modal-container {
     position: fixed; /* or absolute — element does have a parent hence it uses 'body' which achieves the same effect */
     top: 0;
@@ -303,8 +347,8 @@ body {
     padding: 32px 64px;
 }
 
-/** Display Utilities */
 
+/** Display Utilities */
 .show-modal {
     opacity: 1;
     pointer-events: initial;
