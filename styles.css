@@ -267,13 +267,15 @@ body {
 }
 
 /** Results Section — Display Results,Winner/Loser & Play Again Button */
-.results.show-winner-or-loser {
+/** Putting the class directly after the results class without a space between them applies the styles directly to it and not as a separate style class */
+.results.show-winner-or-loser { 
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: 
         "player-picked-title . house-picked-title"
         "player-picked winner-or-loser house-picked"
     ;
 }
+
 
 /** Rules Button Section */
 .rules {
