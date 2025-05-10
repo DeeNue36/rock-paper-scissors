@@ -31,7 +31,6 @@
 body {
     font-family: 'Barlow Semi Condensed', sans-serif;
     background: radial-gradient(at top, var(--bg-gradient-one), var(--bg-gradient-two));
-    /* background: radial-gradient(circle farthest-side at center top, rgba(31, 55, 86, 1) 12%, rgba(20, 21, 57, 1) 100%); */
     min-height: 100vh;
     text-transform: uppercase;
     color: var(--light-text);
@@ -266,6 +265,7 @@ body {
     border: 2px solid var(--header-outline);
 }
 
+
 /** Results Section — Display Results,Winner/Loser & Play Again Button */
 /** Putting the class directly after the results class without a space between them applies the styles directly to it and not as a separate style class */
 .results.show-winner-or-loser { 
@@ -274,6 +274,24 @@ body {
         "player-picked-title . house-picked-title"
         "player-picked winner-or-loser house-picked"
     ;
+}
+
+.winner .choice::after {
+    /* box-shadow: 0 0 0 40px #ffffff64, 0 0 0 80px #ffffff32, 0 0 0 120px #ffffff16; */
+    /* opacity: 1; */ /** commented out to use an animation for smoother entrance */
+    
+    box-shadow: 0 0 0 48px #ffffff64, 0 0 0 96px #ffffff32, 0 0 0 144px #ffffff16;
+    z-index: -2;
+    animation: winner 1s ease-in forwards;
+}
+
+@keyframes winner {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 
@@ -356,10 +374,11 @@ body {
     pointer-events: initial;
 }
 
-.hide-modal {
+/*! Alternative method to be added/removed with JS */
+/* .hide-modal {
     opacity: 0;
     pointer-events: none;
-}
+} */
 
 .hidden {
     display: none;
