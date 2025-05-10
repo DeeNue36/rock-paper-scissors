@@ -31,6 +31,9 @@ const resultsDivs = document.querySelectorAll('.result');
 // const playerChoiceResult = document.querySelector('.player-choice-result');
 // const houseChoiceResult = document.querySelector('.house-choice-result');
 
+const winnerOrLoser = document.querySelector('.winner-or-loser');
+const winLoseText = document.querySelector('.win-lose-text');
+
 
 //* Game Logic
 
@@ -50,6 +53,7 @@ playerChoice.forEach( button => {
 function choose(choice) {
     const houseChoice = houseChose();
     displayResults([choice, houseChoice]);
+    displayWinner([choice, houseChoice]);
 }
 
 function houseChose() {
@@ -94,6 +98,30 @@ function displayResults(results) {
     //     }, index * 1000);
     // });
 
+}
+
+function displayWinner(results) {
+    setTimeout(() => {
+        const playerWins = isWinner(results);
+        const houseWins = isWinner(results.reverse());
+
+        if(playerWins) {
+            winLoseText.innerText = 'You Win!';
+        } else if(houseWins) {
+            winLoseText.innerText = 'You Lose!';
+        } else {
+            winLoseText.innerText = 'Draw!';
+        }
+        
+        winnerOrLoser.classList.toggle('hidden');
+        resultsArea.classList.toggle('show-winner-or-loser');
+    }, 1000);
+
+
+}
+
+function isWinner(results) {
+    return results[0].beats === results[1].name;
 }
 
 
