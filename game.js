@@ -24,15 +24,22 @@ const gameLogic = [
     }
 ]
 
+//* Get Game & Game Results Section DOM Elements
 const playerChoice = document.querySelectorAll('.choice-btn');
 const gameArea = document.querySelector('.game');
-const resultsArea = document.querySelector('.results');
+const resultsContainer = document.querySelector('.results');
 const resultsDivs = document.querySelectorAll('.result');
 // const playerChoiceResult = document.querySelector('.player-choice-result');
 // const houseChoiceResult = document.querySelector('.house-choice-result');
 
 const winnerOrLoser = document.querySelector('.winner-or-loser');
 const winLoseText = document.querySelector('.win-lose-text');
+
+const playAgainBtn = document.querySelector('.new-game-btn');
+
+//* Keeping track of the player's score
+const scoreCount = document.getElementById('score-count');
+let playerScore = 0;
 
 
 //* Game Logic
@@ -77,7 +84,7 @@ function displayResults(results) {
     // console.log(results);
 
     gameArea.classList.toggle('hidden');
-    resultsArea.classList.toggle('hidden');
+    resultsContainer.classList.toggle('hidden');
 
     //! Another way to do it using playerChoiceResult & houseChoiceResult variables
     // results.forEach((result, index) => {
@@ -107,14 +114,20 @@ function displayWinner(results) {
 
         if(playerWins) {
             winLoseText.innerText = 'You Win!';
-        } else if(houseWins) {
+            resultsDivs[0].classList.toggle('winner');
+            trackScore(1);
+        } 
+        else if(houseWins) {
             winLoseText.innerText = 'You Lose!';
-        } else {
+            resultsDivs[1].classList.toggle('winner');
+            trackScore(-1);
+        } 
+        else {
             winLoseText.innerText = 'Draw!';
         }
-        
+
         winnerOrLoser.classList.toggle('hidden');
-        resultsArea.classList.toggle('show-winner-or-loser');
+        resultsContainer.classList.toggle('show-winner-or-loser');
     }, 1000);
 
 
@@ -122,6 +135,25 @@ function displayWinner(results) {
 
 function isWinner(results) {
     return results[0].beats === results[1].name;
+}
+
+playAgainBtn.addEventListener('click', () => {
+    gameArea.classList.toggle('hidden');
+    resultsContainer.classList.toggle('hidden');
+
+    resultsDivs.forEach(resultDiv => {
+        resultDiv.innerHTML = '';
+        resultDiv.classList.remove('winner');
+    });
+
+    winLoseText.innerText = "";
+    winnerOrLoser.classList.toggle('hidden');
+    resultsContainer.classList.toggle('show-winner-or-loser');
+});
+
+function trackScore(point) {
+    playerScore += point;
+    scoreCount.innerText = playerScore;
 }
 
 
