@@ -8,19 +8,16 @@ const gameLogic = [
         id: 1,
         name: 'rock',
         beats: 'scissors',
-        // loses: 'paper'
     },
     {
         id: 2,
         name: 'paper',
         beats: 'rock',
-        // loses: 'scissors'
     },
     {
         id: 3,
         name: 'scissors',
-        beats: 'paper',
-        // loses: 'rock'
+        beats: 'paper'
     }
 ]
 
@@ -49,22 +46,22 @@ playerChoice.forEach( button => {
     button.addEventListener( 'click', () => {
         //? Get the player's choice
         const playerChoiceName = button.dataset.choice;
-        // console.log(playerChoiceName);
 
         //? Finds the choice by looping through the gameLogic array & checking if the name property matches the playerChoiceName variable when the button is clicked.
         const choice = gameLogic.find(choice => choice.name === playerChoiceName); 
-        choose(choice);
+        thePlayerChose(choice);
     });
 });
 
-function choose(choice) {
+function thePlayerChose(choice) {
     const houseChoice = houseChose();
     displayResults([choice, houseChoice]);
     displayWinner([choice, houseChoice]);
 }
 
 function houseChose() {
-    // ? Generate a random number between 0 and the length of the gameLogic array and floor(approximate) it
+    // ? Generate a random number between 0 and the length of the gameLogic array and floors(approximates) it
+    // ? In simpler terms, it randomly selects the index number of an object in the gameLogic array and returns that object
     const randomChoice = Math.floor( Math.random() * gameLogic.length )
     return gameLogic[randomChoice];
 }
