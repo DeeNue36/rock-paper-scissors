@@ -78,8 +78,6 @@ function displayResults(results) {
         }, index * 1200);
     });
 
-    // console.log(results);
-
     gameArea.classList.toggle('hidden');
     resultsContainer.classList.toggle('hidden');
 
