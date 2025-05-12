@@ -30,7 +30,7 @@
 
 body {
     font-family: 'Barlow Semi Condensed', sans-serif;
-    background: radial-gradient(at top, var(--bg-gradient-one), var(--bg-gradient-two));
+    background: radial-gradient(at top, var(--bg-gradient-one), var(--bg-gradient-two)) no-repeat;
     min-height: 100vh;
     text-transform: uppercase;
     color: var(--light-text);
@@ -53,7 +53,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 40px 0 20px;
+    margin: 64px 0 32px;
 }
 
 .logo {
@@ -193,7 +193,8 @@ body {
         "player-picked house-picked"
     ;
     max-width: 1032px;
-    margin: 0 auto;
+    height: 480px;
+    margin: 0 auto 80px;
 }
 
 .player-choice {
@@ -208,7 +209,6 @@ body {
 .house-choice {
     font-size: 24px;
     letter-spacing: 1.6px;
-    padding: 64px 0 128px;
 }
 
 .player-choice-result {
@@ -224,7 +224,7 @@ body {
     min-height: 160px;
     background: #16213d;
     border-radius: 50%;
-    transform: scale(1.5);
+    transform: scale(1.4);
     z-index: -1;
 }
 
@@ -301,6 +301,8 @@ body {
     justify-content: flex-end;
     align-items: center;
     margin: 24px 48px;
+    position: relative;
+    top: 6.4vh;
 }
 
 .rules-btn {
