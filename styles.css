@@ -300,9 +300,7 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin: 24px 48px;
-    position: relative;
-    top: 6.4vh;
+    margin: 128px 48px 24px 0;
 }
 
 .rules-btn {
@@ -479,7 +477,7 @@ body {
         box-shadow: 0 0 0 48px #ffffff08, 0 0 0 96px #ffffff08, 0 0 0 144px #ffffff08;
     }
     .rules {
-        position: static;
+        margin: 24px 48px;
         justify-content: center;
     }
         .game, .winner-or-loser {
