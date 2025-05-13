@@ -465,7 +465,7 @@ body {
         min-height: 128px;
     }
     .winner-or-loser {
-        margin-top: 32px;
+        margin-top: 48px;
     }
     .win-lose-text {
         font-size: 56px;
@@ -532,7 +532,7 @@ body {
         font-size: 16px;
     }
     .win-lose-text {
-        padding-bottom: 8px;
+        padding-bottom: 10px;
     }
 }
 
@@ -543,9 +543,6 @@ body {
     .choice {
         width: 108px;
         height: 108px;
-    }
-    .choice img {
-        transform: scale(1);
     }
     .player-choice-result, .house-choice-result {
         min-width: 108px;
