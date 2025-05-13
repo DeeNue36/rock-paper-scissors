@@ -386,3 +386,111 @@ body {
     display: none;
 }
 
+
+/** Media Queries */
+
+@media screen and (max-width: 1024px) {
+    .container {
+        width: 72%;
+        max-width: 800px;
+    }
+    .results {
+        width: 90%;
+    }
+    .player-choice-result, .house-choice-result {
+        transform: scale(1.16);
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .container { 
+        width: 90%;
+    }
+    .results {
+        margin: 0 auto;
+    }
+    .player-choice-result, .house-choice-result {
+        transform: scale(1.1);
+    }
+    .win-lose-text {
+        font-size: 36px;
+    }
+    .new-game-btn {
+        padding: 16px 48px;
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .scores-header {
+        margin: 16px 0 0;
+        padding: 16px;
+    }
+    .logo {
+        height: 80px;
+        width: 132px;
+    }
+    .results {
+        width: 100%;
+        height: 100%;
+        gap: 20px 0;
+        place-content: center;
+        margin-top: 128px;
+    }
+    .results.show-winner-or-loser {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: 
+            "player-picked house-picked"
+            "player-picked-title house-picked-title"
+            "winner-or-loser winner-or-loser"
+        ;
+    }
+    .player-choice, .house-choice {
+        font-size: 20px;
+    }
+    .player-choice-result, .house-choice-result {
+        transform: scale(0.72);
+    }
+    .winner-or-loser {
+        margin-top: 32px;
+    }
+    .win-lose-text {
+        font-size: 56px;
+        padding-bottom: 12px;
+    }
+    .new-game-btn {
+        padding: 16px 64px;
+        font-size: 20.8px;
+    }
+    .winner .choice::after {
+        box-shadow: 0 0 0 48px #ffffff08, 0 0 0 96px #ffffff08, 0 0 0 144px #ffffff08;
+    }
+    .rules {
+        justify-content: center;
+        
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .results {
+        margin-top: 96px;
+    }
+    .rules {
+        top: 2.4vh;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .results { 
+        margin-top: 80px;
+    }
+    .player-choice, .house-choice {
+        font-size: 16px;
+    }
+    .win-lose-text {
+        padding-bottom: 8px;
+    }
+    .rules {
+        top: 1vh;
+    }
+}
