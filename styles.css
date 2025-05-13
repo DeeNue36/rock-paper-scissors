@@ -485,6 +485,20 @@ body {
     }
 }
 
+@media screen and (max-width: 428px) {
+    .modal {
+        width: 90%;
+    }
+    .modal-container {
+        place-content: center;
+    }
+    .modal-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 @media screen and (max-width: 414px) {
     .results {
         margin-top: 96px;
@@ -502,6 +516,12 @@ body {
     .player-choice-result, .house-choice-result {
         min-width: 118px;
         min-height: 118px;
+    }
+    .modal {
+        width: 96%;
+    }
+    .rules-img {
+        padding: 32px;
     }
 }
 
@@ -531,6 +551,10 @@ body {
     }
     .win-lose-text {
         padding-bottom: 10px;
+    }
+    .rules-img {
+        padding: 24px;
+        width: 96%;
     }
 }
 
