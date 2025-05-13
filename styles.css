@@ -474,7 +474,7 @@ body {
         font-size: 20.8px;
     }
     .winner .choice::after {
-        box-shadow: 0 0 0 48px #ffffff08, 0 0 0 96px #ffffff08, 0 0 0 144px #ffffff08;
+        box-shadow: 0 0 0 48px #ffffff16, 0 0 0 96px #ffffff12, 0 0 0 144px #ffffff08;
     }
     .rules {
         margin: 24px 48px;
