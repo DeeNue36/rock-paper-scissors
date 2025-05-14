@@ -38,17 +38,17 @@ const playAgainBtn = document.querySelector('.new-game-btn');
 const scoreCount = document.getElementById('score-count');
 let playerScore = 0;
 
-// Retrieve the stored score from local storage
+//*  Retrieve the stored score from local storage
 let storedScore = localStorage.getItem('playerScore');
 
-// If a stored score exists, update the playerScore variable and the score display
+//*  If a stored score exists, update the playerScore variable and the score display
 if (storedScore) {
     playerScore = parseInt(storedScore);
     scoreCount.innerText = playerScore;
 }
 
 
-//* Game Logic
+//*  Game Logic
 
 //? Adds a click event listener to each button & passes the value to the choice variable which calls the choose function
 playerChoice.forEach( button => {
