@@ -38,6 +38,15 @@ const playAgainBtn = document.querySelector('.new-game-btn');
 const scoreCount = document.getElementById('score-count');
 let playerScore = 0;
 
+// Retrieve the stored score from local storage
+let storedScore = localStorage.getItem('playerScore');
+
+// If a stored score exists, update the playerScore variable and the score display
+if (storedScore) {
+    playerScore = parseInt(storedScore);
+    scoreCount.innerText = playerScore;
+}
+
 
 //* Game Logic
 
@@ -52,6 +61,7 @@ playerChoice.forEach( button => {
         thePlayerChose(choice);
     });
 });
+
 
 function thePlayerChose(choice) {
     const houseChoice = houseChose();
@@ -102,6 +112,7 @@ function displayResults(results) {
 
 }
 
+
 function displayWinner(results) {
     setTimeout(() => {
         const playerWins = isWinner(results);
@@ -128,6 +139,7 @@ function displayWinner(results) {
 
 }
 
+
 function isWinner(results) {
     return results[0].beats === results[1].name;
 }
@@ -149,6 +161,7 @@ playAgainBtn.addEventListener('click', () => {
 function trackScore(point) {
     playerScore += point;
     scoreCount.innerText = playerScore;
+    storeScore(); // Save the score to local storage
 }
 
 
@@ -159,8 +172,29 @@ rulesBtn.addEventListener('click', () => {
     // rulesModal.classList.remove('hide-modal');
 });
 
+
 closeBtn.addEventListener('click', () => {
     rulesModal.classList.toggle('show-modal');
     //OR rulesModal.classList.add('hide-modal');
     // rulesModal.classList.remove('show-modal');
 })
+
+// * Close the modal when the user clicks outside of it
+window.addEventListener('click', e => {
+    if(e.target === rulesModal) {
+        rulesModal.classList.toggle('show-modal');
+    }
+});
+
+//* Maintain the state of the score when the browser is reloaded
+function storeScore() {
+    localStorage.setItem('playerScore', playerScore);
+}
+// let currentScore = localStorage.getItem('playerScore');
+// scoreCount.innerText = currentScore;
+
+// Todo:  Stop the score from refreshing when the page is reloaded
+// Todo: Prevent the score from going below zero and instead add a score section for the computer
+// Todo:  Add a reset button
+// Todo:  Add a high score tracker
+// Todo:  Do Rock Paper Scissors Lizard Spock in a new branch
