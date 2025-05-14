@@ -1,5 +1,6 @@
 //* Get DOM Elements
 const rulesBtn = document.querySelector('.rules-btn');
+const resetBtn = document.querySelector('.reset-btn');
 const closeBtn = document.querySelector('.close-modal-btn');
 const rulesModal = document.querySelector('.modal-container');
 
@@ -161,7 +162,13 @@ playAgainBtn.addEventListener('click', () => {
 function trackScore(point) {
     playerScore += point;
     scoreCount.innerText = playerScore;
-    storeScore(); // Save the score to local storage
+    storeScore();  // Save the score to local storage
+}
+
+
+//* Maintain the state of the score when the browser is reloaded
+function storeScore() {
+    localStorage.setItem('playerScore', playerScore);
 }
 
 
@@ -172,12 +179,12 @@ rulesBtn.addEventListener('click', () => {
     // rulesModal.classList.remove('hide-modal');
 });
 
-
 closeBtn.addEventListener('click', () => {
     rulesModal.classList.toggle('show-modal');
     //OR rulesModal.classList.add('hide-modal');
     // rulesModal.classList.remove('show-modal');
-})
+});
+
 
 // * Close the modal when the user clicks outside of it
 window.addEventListener('click', e => {
@@ -186,15 +193,15 @@ window.addEventListener('click', e => {
     }
 });
 
-//* Maintain the state of the score when the browser is reloaded
-function storeScore() {
-    localStorage.setItem('playerScore', playerScore);
-}
-// let currentScore = localStorage.getItem('playerScore');
-// scoreCount.innerText = currentScore;
+// * Reset the score when the reset button is clicked
+resetBtn.addEventListener('click', () => {
+    playerScore = 0;
+    scoreCount.innerText = playerScore;
+    localStorage.removeItem('playerScore'); // Clear the score from local storage. Not doing this will display your last score on page reload
+});
 
-// Todo:  Stop the score from refreshing when the page is reloaded
+
 // Todo: Prevent the score from going below zero and instead add a score section for the computer
-// Todo:  Add a reset button
+// Todo:  Add a reset button — DONE
 // Todo:  Add a high score tracker
 // Todo:  Do Rock Paper Scissors Lizard Spock in a new branch

@@ -300,10 +300,11 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    column-gap:  32px;
     margin: 128px 48px 24px 0;
 }
 
-.rules-btn {
+.rules-btn , .reset-btn {
     background: transparent;
     outline: none;
     cursor: pointer;
@@ -318,7 +319,7 @@ body {
     border-radius: 10px;
 }
 
-.rules-btn:focus {
+.rules-btn:focus, .reset-btn:focus {
     border: 2px solid var(--score-background);
 }
 
@@ -417,6 +418,9 @@ body {
         padding: 16px 48px;
         font-size: 16px;
     }
+    .rules {
+        justify-content: center;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -478,7 +482,6 @@ body {
     }
     .rules {
         margin: 24px 48px;
-        justify-content: center;
     }
         .game, .winner-or-loser {
         margin-bottom: 36px;
