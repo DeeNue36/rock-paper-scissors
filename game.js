@@ -22,6 +22,7 @@ const gameLogic = [
     }
 ]
 
+
 //* Get Game & Game Results Section DOM Elements
 const playerChoice = document.querySelectorAll('.choice-btn');
 const gameArea = document.querySelector('.game');
@@ -195,6 +196,11 @@ window.addEventListener('click', e => {
 
 // * Reset the score when the reset button is clicked
 resetBtn.addEventListener('click', () => {
+    //?  If the results are being shown, do not reset the score
+    if ( !resultsContainer.classList.contains('hidden') ) {
+        return; // returns without executing the rest of the function
+    }
+
     playerScore = 0;
     scoreCount.innerText = playerScore;
     localStorage.removeItem('playerScore'); // Clear the score from local storage. Not doing this will display your last score on page reload
