@@ -39,26 +39,32 @@ const scoreCount = document.getElementById('score-count');
 let playerScore = 0;
 
 
-//* Game Logic
+//* Rock Paper Scissors Game Logic
 
-//? Adds a click event listener to each button & passes the value to the choice variable which calls the choose function
+
+//* Adds a click function to each button & passes the value to the choice variable which calls the choose function
 playerChoice.forEach( button => {
     button.addEventListener( 'click', () => {
         //? Get the player's choice
         const playerChoiceName = button.dataset.choice;
 
-        //? Finds the choice by looping through the gameLogic array & checking if the name property matches the playerChoiceName variable when the button is clicked.
+        //? Finds the player's choice by looping through the gameLogic array & checking if the name matches the name of the button that  it is clicked.
         const choice = gameLogic.find(choice => choice.name === playerChoiceName); 
         thePlayerChose(choice);
     });
 });
 
+
+//? The player's choice is passed to the thePlayerChose function which calls the houseChose function
+// * Function to display the player's choice & the house's choice, display the results & determine the winner/loser/tie
 function thePlayerChose(choice) {
     const houseChoice = houseChose();
     displayResults([choice, houseChoice]);
     displayWinner([choice, houseChoice]);
 }
 
+
+// * Function to randomly select the house's choice
 function houseChose() {
     // ? Returns a random number between 0 and the length of the gameLogic array and floors(approximates) it
     // ? In simpler terms, it randomly selects the index number of an object in the gameLogic array and returns that object
@@ -66,6 +72,8 @@ function houseChose() {
     return gameLogic[randomChoice];
 }
 
+
+//* Display the player's choice & the house's choice e.g  Player — Rock & House — Scissors
 function displayResults(results) {
     //? Loop through the results array and display the player's choice and the house's choice
     resultsDivs.forEach((resultDiv, index) => {
@@ -102,11 +110,14 @@ function displayResults(results) {
 
 }
 
+
+// * Determines the winner of a round by checking if the player or the house(AI) won 
 function displayWinner(results) {
     setTimeout(() => {
         const playerWins = isWinner(results);
-        const houseWins = isWinner(results.reverse());
+        const houseWins = isWinner(results.reverse()); //? Reverses the array to check if the house won i.e  in the playerChose function displayWinner([choice, houseChoice]) becomes displayWinner([houseChoice, choice])
 
+        //? Win, Lose or Draw Conditions
         if(playerWins) {
             winLoseText.innerText = 'You Win!';
             resultsDivs[0].classList.toggle('winner');
@@ -128,14 +139,19 @@ function displayWinner(results) {
 
 }
 
+
+// * Function to determine who wins
 function isWinner(results) {
     return results[0].beats === results[1].name;
 }
 
+
+// *  Start a new round of rock paper scissors and reset the page to its initial state
 playAgainBtn.addEventListener('click', () => {
     gameArea.classList.toggle('hidden');
     resultsContainer.classList.toggle('hidden');
 
+    //? Clear the player's choice and the house's choice
     resultsDivs.forEach(resultDiv => {
         resultDiv.innerHTML = '';
         resultDiv.classList.remove('winner');
@@ -146,13 +162,15 @@ playAgainBtn.addEventListener('click', () => {
     resultsContainer.classList.toggle('show-winner-or-loser');
 });
 
+
+// * Keep track of the player's score
 function trackScore(point) {
     playerScore += point;
     scoreCount.innerText = playerScore;
 }
 
 
-//* Show & Hide Rules Modal
+//* Show & Hide the Rules Modal
 rulesBtn.addEventListener('click', () => {
     rulesModal.classList.toggle('show-modal');
     //OR rulesModal.classList.add('show-modal');
