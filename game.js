@@ -71,12 +71,14 @@ function thePlayerChose(choice) {
     displayWinner([choice, houseChoice]);
 }
 
+
 function houseChose() {
     // ? Returns a random number between 0 and the length of the gameLogic array and floors(approximates) it
     // ? In simpler terms, it randomly selects the index number of an object in the gameLogic array and returns that object
     const randomChoice = Math.floor( Math.random() * gameLogic.length )
     return gameLogic[randomChoice];
 }
+
 
 function displayResults(results) {
     //? Loop through the results array and display the player's choice and the house's choice
