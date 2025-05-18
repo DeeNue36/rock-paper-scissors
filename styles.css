@@ -418,6 +418,9 @@ body {
         padding: 16px 48px;
         font-size: 16px;
     }
+    .rules {
+        justify-content: center;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -479,7 +482,6 @@ body {
     }
     .rules {
         margin: 24px 48px;
-        justify-content: center;
     }
         .game, .winner-or-loser {
         margin-bottom: 36px;
