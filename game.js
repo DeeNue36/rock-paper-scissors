@@ -44,13 +44,18 @@ let playerScore = 0;
 const houseScoreCount = document.getElementById('house-score-count');
 let houseScore = 0;
 
-//*  Retrieve the stored score from local storage
+//*  Retrieve the stored scores from local storage
 let storedScore = localStorage.getItem('playerScore');
+let storedHouseScore = localStorage.getItem('houseScore');
 
-//*  If a stored score exists, update the playerScore variable and the score display
-if (storedScore) {
+
+//*  If a stored score exists, update the playerScore, the houseScore variable and display the scores
+if (storedScore || storedHouseScore) {
     playerScore = parseInt(storedScore);
     scoreCount.innerText = playerScore;
+
+    houseScore = parseInt(storedHouseScore);
+    houseScoreCount.innerText = houseScore;
 }
 
 
@@ -75,12 +80,14 @@ function thePlayerChose(choice) {
     displayWinner([choice, houseChoice]);
 }
 
+
 function houseChose() {
     // ? Returns a random number between 0 and the length of the gameLogic array and floors(approximates) it
     // ? In simpler terms, it randomly selects the index number of an object in the gameLogic array and returns that object
     const randomChoice = Math.floor( Math.random() * gameLogic.length )
     return gameLogic[randomChoice];
 }
+
 
 function displayResults(results) {
     //? Loop through the results array and display the player's choice and the house's choice
@@ -164,6 +171,7 @@ playAgainBtn.addEventListener('click', () => {
     resultsContainer.classList.toggle('show-winner-or-loser');
 });
 
+
 function trackScore(point) {
     if ( point < 0 ) {
         return;
@@ -174,6 +182,7 @@ function trackScore(point) {
     }
     storeScore();  // Save the score to local storage
 }
+
 
 function trackHouseScore (point) {
     if (point<0) {
@@ -190,6 +199,7 @@ function trackHouseScore (point) {
 //* Maintain the state of the score when the browser is reloaded
 function storeScore() {
     localStorage.setItem('playerScore', playerScore);
+    localStorage.setItem('houseScore', houseScore);
 }
 
 
@@ -199,6 +209,7 @@ rulesBtn.addEventListener('click', () => {
     //OR rulesModal.classList.add('show-modal');
     // rulesModal.classList.remove('hide-modal');
 });
+
 
 closeBtn.addEventListener('click', () => {
     rulesModal.classList.toggle('show-modal');
@@ -214,6 +225,7 @@ window.addEventListener('click', e => {
     }
 });
 
+
 // * Reset the score when the reset button is clicked
 resetBtn.addEventListener('click', () => {
     //?  If the results are being shown, do not reset the score
@@ -222,12 +234,17 @@ resetBtn.addEventListener('click', () => {
     }
 
     playerScore = 0;
+    houseScore = 0;
+
     scoreCount.innerText = playerScore;
+    houseScoreCount.innerText = houseScore;
+
     localStorage.removeItem('playerScore'); // Clear the score from local storage. Not doing this will display your last score on page reload
+    localStorage.removeItem('houseScore'); // Clear the score from local storage. Not doing this will display your last score on page reload
 });
 
 
-// Todo: Prevent the score from going below zero and instead add a score section for the computer
+// Todo: Prevent the score from going below zero and instead add a score section for the computer — DONE
 // Todo:  Add a reset button — DONE
 // Todo:  Add a high score tracker
 // Todo:  Do Rock Paper Scissors Lizard Spock in a new branch
