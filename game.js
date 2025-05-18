@@ -40,6 +40,10 @@ const playAgainBtn = document.querySelector('.new-game-btn');
 const scoreCount = document.getElementById('score-count');
 let playerScore = 0;
 
+// * Keeping track of the house's/AI's score
+const houseScoreCount = document.getElementById('house-score-count');
+let houseScore = 0;
+
 //*  Retrieve the stored score from local storage
 let storedScore = localStorage.getItem('playerScore');
 
@@ -128,7 +132,7 @@ function displayWinner(results) {
         else if(houseWins) {
             winLoseText.innerText = 'You Lose!';
             resultsDivs[1].classList.toggle('winner');
-            trackScore(-1);
+            trackHouseScore(1);
         } 
         else {
             winLoseText.innerText = 'Draw!';
@@ -161,8 +165,24 @@ playAgainBtn.addEventListener('click', () => {
 });
 
 function trackScore(point) {
-    playerScore += point;
-    scoreCount.innerText = playerScore;
+    if ( point < 0 ) {
+        return;
+    }
+    else {
+        playerScore += point;
+        scoreCount.innerText = playerScore;
+    }
+    storeScore();  // Save the score to local storage
+}
+
+function trackHouseScore (point) {
+    if (point<0) {
+        return;
+    }
+    else {
+        houseScore += point;
+        houseScoreCount.innerText = houseScore;
+    }
     storeScore();  // Save the score to local storage
 }
 
