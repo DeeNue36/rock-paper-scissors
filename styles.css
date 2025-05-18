@@ -304,6 +304,10 @@ body {
     margin: 128px 48px 24px 0;
 }
 
+.rules-btn {
+        width: 240.48px; /** 240.48px is the width of the advance game button, so that it looks consistent */
+}
+
 .rules-btn, .advanced-game-btn {
     background: transparent;
     outline: none;
@@ -421,6 +425,7 @@ body {
     }
     .rules {
         justify-content: center;
+        margin: 128px 0 24px 0;
     }
 }
 
@@ -482,9 +487,11 @@ body {
         box-shadow: 0 0 0 48px #ffffff16, 0 0 0 96px #ffffff12, 0 0 0 144px #ffffff08;
     }
     .rules {
+        flex-direction: column;
         margin: 24px 48px;
+        gap: 32px 0;
     }
-        .game, .winner-or-loser {
+    .game, .winner-or-loser {
         margin-bottom: 36px;
     }
 }
@@ -574,4 +581,16 @@ body {
         min-width: 108px;
         min-height: 108px;
     }
+    .rules {
+        margin: 24px 32px;
+    }
+}
+
+/** The height of the smallest device becomes its width in landscape orientation */
+@media only screen and (min-width: 568px) and (max-width: 850px) and (orientation: landscape) { 
+    .rules {
+        justify-content: center;
+        margin: 128px 0;
+    }
+
 }
