@@ -304,7 +304,7 @@ body {
     margin: 128px 48px 24px 0;
 }
 
-.rules-btn {
+.rules-btn, .advanced-game-btn {
     background: transparent;
     outline: none;
     cursor: pointer;
@@ -317,9 +317,10 @@ body {
     border: 2px solid var(--header-outline);
     padding: 10px 40px;
     border-radius: 10px;
+    text-align: center;
 }
 
-.rules-btn:focus {
+.rules-btn:focus, .advanced-game-btn:focus {
     border: 2px solid var(--score-background);
 }
 
