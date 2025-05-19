@@ -643,6 +643,15 @@ body {
     }
 }
 
+@media screen and (min-width: 412px) and (max-width: 430px) { 
+    .modal-header { 
+        /* width: 90%; */
+    }
+    .rules-img {
+        padding: 32px 40px;
+    }
+}
+
 @media screen and (max-width: 414px) {
     .results {
         margin-top: 96px;
@@ -679,7 +688,8 @@ body {
         width: 96%;
     }
     .rules-img {
-        padding: 32px;
+        padding: 32px 20px;
+        transform: scale(0.9);
     }
 }
 
