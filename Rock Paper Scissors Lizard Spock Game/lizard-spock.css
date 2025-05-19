@@ -1,0 +1,668 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;600;700&display=swap');
+
+:root {
+    --scissors-gradient-one: hsl(39, 89%, 49%);
+    --scissors-gradient-two: hsl(40, 84%, 53%);
+    --paper-gradient-one: hsl(230, 89%, 62%);
+    --paper-gradient-two: hsl(230, 89%, 65%);
+    --rock-gradient-one: hsl(349, 71%, 52%);
+    --rock-gradient-two: hsl(349, 70%, 56%);
+    --lizard-gradient-one: hsl(261, 73%, 60%);
+    --lizard-gradient-two: hsl(261, 72%, 63%);
+    --spock-gradient-one: hsl(189, 59%, 53%);
+    --spock-gradient-two: hsl(189, 58%, 57%);
+    --light-text: #ffffff;
+    --dark-text: hsl(229, 25%, 31%);
+    --score-text: hsl(229, 64%, 46%);
+    --score-background: hsl(0, 0%, 98%);
+    --header-outline: hsl(217, 16%, 45%);
+    --bg-gradient-one: hsl(214, 47%, 23%);
+    --bg-gradient-two: hsl(237, 49%, 15%);
+    --shadow-inner: #00000026;
+    --shadow-outer: #0000004d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    background: radial-gradient(at top, var(--bg-gradient-one), var(--bg-gradient-two)) no-repeat;
+    min-height: 100vh;
+    text-transform: uppercase;
+    color: var(--light-text);
+}
+
+.container {
+    margin: 0 auto;
+    position: relative;
+    width: 55%;
+    /* max-width: 700px; */ /** commented out to allow for responsive design */
+}
+
+
+/** Score Section */
+.scores-header {
+    border: 2px solid var(--header-outline);
+    border-radius: 10px;
+    padding: 32px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 32px 0 32px;
+}
+
+.logo {
+    height: 100%;
+}
+
+.scores {
+    background-color: var(--score-background);
+    border-radius: 10px;
+    padding: 10px 40px;
+    max-width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.score-heading {
+    text-align: center;
+    color: var(--score-text);
+    font-size: 18px;
+    font-weight:  600;
+}
+
+#score-count {
+    text-align: center;
+    color: var(--dark-text);
+    font-size: 64px;
+    font-weight: 700;
+}
+
+
+/** Game Section */
+.game {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas: 
+        ". scissors ."
+        "spock . paper"
+        "lizard . rock"
+    ;
+    place-items: center;
+    height: 520px;
+    margin-top: 64px; /* OR padding-top: 48px; */ 
+}
+
+.game::before {
+    content: '';
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: url('../assets/bg-pentagon.svg') no-repeat center center/ auto 50%;
+    /* background: url('../assets/bg-pentagon.svg') no-repeat center center/50% 60%; * OR  50% 50% */
+    /* background: url('../assets/bg-pentagon.svg') no-repeat center center; * OR  50% 50% */
+    z-index: -1;
+}
+
+.choice-btn {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.choice {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    background-color: var(--score-background);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    box-shadow: inset 0 8px var(--shadow-inner);
+}
+
+.choice-btn[data-choice="paper"] {
+    grid-area: paper;
+    margin: 0 96px 48px 0;
+
+}
+.choice-btn[data-choice="scissors"] {
+    grid-area: scissors;
+    margin-bottom: 48px;
+}
+.choice-btn[data-choice="rock"] {
+    grid-area: rock;
+    position: absolute;
+    right: 80%;
+    top: 32px;
+}
+
+.choice-btn[data-choice="lizard"] {
+    grid-area: lizard;
+    position: absolute;
+    left: 80%;
+    top: 32px;
+}
+.choice-btn[data-choice="spock"] {
+    grid-area: spock;
+    margin: 0 0 48px 96px;
+}
+
+.choice img {
+    transform: scale(1.28);
+}
+
+.choice::before, 
+.choice::after {
+    content: '';
+    position: absolute;
+    left: -15%;
+    top: -15%;
+    width: 130%;
+    height: 130%;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.choice::after {
+    opacity: 0;
+    transition: opacity .4s ease-in;
+}
+
+.choice-btn:focus .choice::after {
+    opacity: 1;
+    box-shadow: 0 0 0 32px #223351;
+    z-index: -2;
+}
+
+.paper.choice::before {
+    background: linear-gradient(to bottom, var(--paper-gradient-one), var(--paper-gradient-two));
+    box-shadow: 0 8px var(--shadow-outer), 0 8px var(--paper-gradient-two);
+}
+
+.scissors.choice::before {
+    background: linear-gradient(to bottom, var(--scissors-gradient-one), var(--scissors-gradient-two));
+    box-shadow: 0 8px var(--shadow-outer), 0 8px var(--scissors-gradient-two);
+}
+
+.rock.choice::before {
+    background: linear-gradient(to bottom, var(--rock-gradient-one), var(--rock-gradient-two));
+    box-shadow: 0 8px var(--shadow-outer), 0 8px var(--rock-gradient-two);
+}
+
+.lizard.choice::before {
+    background: linear-gradient(to bottom, var(--lizard-gradient-one), var(--lizard-gradient-two));
+    box-shadow: 0 8px var(--shadow-outer), 0 8px var(--lizard-gradient-two);
+}
+
+.spock.choice::before {
+    background: linear-gradient(to bottom, var(--spock-gradient-one), var(--spock-gradient-two));
+    box-shadow: 0 8px var(--shadow-outer), 0 8px var(--spock-gradient-two);
+}
+
+
+/** Results Section */
+.results {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    grid-template-areas: 
+        "player-picked-title house-picked-title"
+        "player-picked house-picked"
+    ;
+    max-width: 1032px;
+    height: 480px;
+    margin: 0 auto 80px;
+}
+
+.player-choice {
+    grid-area: player-picked-title;
+}
+
+.house-choice {
+    grid-area: house-picked-title;
+}
+
+.player-choice, 
+.house-choice {
+    font-size: 24px;
+    letter-spacing: 1.6px;
+}
+
+.player-choice-result {
+    grid-area: player-picked;
+}
+
+.house-choice-result {
+    grid-area: house-picked;
+}
+
+.player-choice-result, .house-choice-result {
+    min-width: 160px;
+    min-height: 160px;
+    background: #16213d;
+    border-radius: 50%;
+    transform: scale(1.4);
+    z-index: -1;
+}
+
+
+/** Results Section — Win/Lose Message & Play Again Button */
+.winner-or-loser {
+    grid-area: winner-or-loser;
+    display: grid;
+    place-items: center;
+}
+
+.win-lose-text {
+    font-size: 56px;
+    padding-bottom: 24px;
+}
+
+.new-game-btn {
+    background: var(--light-text);
+    font-family: inherit;
+    text-transform: inherit;
+    padding: 16px 64px;
+    /* border: none; */
+    border: 2px solid transparent;
+    outline: none;
+    cursor: pointer;
+    border-radius: 10px;
+    color: var(--dark-text);
+    letter-spacing: 1.6px;
+    font-weight: 600;
+    font-size: 20.8px;
+}
+
+.new-game-btn:hover {
+    color: var(--rock-gradient-one);
+}
+
+.new-game-btn:focus {
+    border: 2px solid var(--header-outline);
+}
+
+
+/** Results Section — Display Results,Winner/Loser & Play Again Button */
+/** Putting the class directly after the results class without a space between them applies the styles directly to it and not as a separate style class */
+.results.show-winner-or-loser { 
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 
+        "player-picked-title . house-picked-title"
+        "player-picked winner-or-loser house-picked"
+    ;
+}
+
+.winner .choice::after {
+    /* box-shadow: 0 0 0 40px #ffffff64, 0 0 0 80px #ffffff32, 0 0 0 120px #ffffff16; */
+    /* opacity: 1; */ /** commented out to use an animation for smoother entrance */
+    
+    box-shadow: 0 0 0 48px #ffffff64, 0 0 0 96px #ffffff32, 0 0 0 144px #ffffff16;
+    z-index: -2;
+    animation: winner 1s ease-in forwards;
+}
+
+@keyframes winner {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/** Rules Button Section */
+.rules {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap:  32px;
+    margin: 128px 48px 24px 0;
+}
+
+.rules-btn {
+    width: 240.48px; /** 240.48px is the width of the advance game button, so that it looks consistent */
+}
+
+.rules-btn, .beginner-game-btn {
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    text-transform: uppercase; /* or text-transform: inherit; */
+    font-family: inherit;
+    font-size: 20.8px;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+    color: var(--score-background);
+    border: 2px solid var(--header-outline);
+    padding: 10px 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.rules-btn:focus, .beginner-game-btn:focus {
+    border: 2px solid var(--score-background);
+}
+
+
+/** Rules Modal */
+.modal-container {
+    position: fixed; /* or absolute — element does have a parent hence it uses 'body' which achieves the same effect */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    background: var(--shadow-outer);
+    opacity: 0;
+    transition: opacity .4s ease-in-out;
+    pointer-events: none;
+}
+
+.modal {
+    background: var(--score-background);
+    border-radius: 10px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 32px 32px 16px;
+}
+
+.modal-heading {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--dark-text);
+}
+
+.close-modal-btn {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.rules-img {
+    padding: 32px 64px;
+}
+
+
+/** Display Utilities */
+.show-modal {
+    opacity: 1;
+    pointer-events: initial;
+}
+
+/*! Alternative method to be added/removed with JS */
+/* .hide-modal {
+    opacity: 0;
+    pointer-events: none;
+} */
+
+.hidden {
+    display: none;
+}
+
+
+/** Media Queries */
+@media (max-width: 1544px) {
+    .scores-header {
+        margin: 64px 0 32px;
+    }
+    .game {
+        margin-top: 64px;
+    }
+    .choice-btn[data-choice="paper"] {
+        margin: 0 72px 48px 0;
+
+    }
+    .choice-btn[data-choice="scissors"] {
+        margin-bottom: 48px;
+    }
+    .choice-btn[data-choice="rock"] {
+        position: absolute;
+        right: 72%;
+        top: 32px;
+    }
+
+    .choice-btn[data-choice="lizard"] {
+        position: absolute;
+        left: 72%;
+        top: 32px;
+    }
+    .choice-btn[data-choice="spock"] {
+        margin: 0 0 48px 72px;
+    }
+}
+
+@media screen and (max-width: 1330px) {
+    .container {
+        width: 72%;
+        max-width: 864px;
+    }
+    /* .results {
+        width: 90%;
+    }
+    .player-choice-result, .house-choice-result {
+        transform: scale(1.2);
+    } */
+}
+
+@media screen and (max-width: 1024px) {
+    .container {
+        width: 72%;
+        max-width: 800px;
+    }
+    .results {
+        width: 90%;
+    }
+    .player-choice-result, .house-choice-result {
+        transform: scale(1.16);
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .container { 
+        width: 90%;
+    }
+    .results {
+        margin: 0 auto;
+    }
+    .player-choice-result, .house-choice-result {
+        transform: scale(1.1);
+    }
+    .win-lose-text {
+        font-size: 36px;
+    }
+    .new-game-btn {
+        padding: 16px 48px;
+        font-size: 16px;
+    }
+    .rules {
+        justify-content: center;
+        margin: 128px 0 24px 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .scores-header {
+        margin: 16px 0 0;
+        padding: 16px;
+    }
+    .logo {
+        height: 80px;
+        width: 132px;
+    }
+    .game::before {
+        /* background: url(./assets/bg-triangle.svg) no-repeat center center / 60% 50%; */
+        background: url(./assets/bg-triangle.svg) no-repeat center center / auto;
+    }
+    .choice {
+        width: 128px;
+        height: 128px;
+    }
+    .choice img {
+        transform: scale(1.2);
+    }
+    .results {
+        width: 100%;
+        height: 100%;
+        gap: 24px 0;
+        place-content: center;
+        margin-top: 128px;
+    }
+    .results.show-winner-or-loser {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: 
+            "player-picked house-picked"
+            "player-picked-title house-picked-title"
+            "winner-or-loser winner-or-loser"
+        ;
+    }
+    .player-choice, .house-choice {
+        font-size: 20px;
+    }
+    .player-choice-result, .house-choice-result {
+        transform: scale(0.84);
+        min-width: 128px;
+        min-height: 128px;
+    }
+    .winner-or-loser {
+        margin-top: 48px;
+    }
+    .win-lose-text {
+        font-size: 56px;
+        padding-bottom: 12px;
+    }
+    .new-game-btn {
+        padding: 16px 64px;
+        font-size: 20.8px;
+    }
+    .winner .choice::after {
+        box-shadow: 0 0 0 48px #ffffff16, 0 0 0 96px #ffffff12, 0 0 0 144px #ffffff08;
+    }
+    .rules {
+        flex-direction: column;
+        margin: 24px 48px;
+        gap: 32px 0;
+    }
+    .game, .winner-or-loser {
+        margin-bottom: 36px;
+    }
+}
+
+@media screen and (max-width: 428px) {
+    .modal {
+        width: 90%;
+    }
+    .modal-container {
+        place-content: center;
+    }
+    .modal-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .results {
+        margin-top: 96px;
+    }
+}
+
+@media screen and (max-width: 393px) {
+    .game {
+        place-content: space-evenly;
+    }
+    .choice {
+        width: 118px;
+        height: 118px;
+    }
+    .player-choice-result, .house-choice-result {
+        min-width: 118px;
+        min-height: 118px;
+    }
+    .modal {
+        width: 96%;
+    }
+    .rules-img {
+        padding: 32px;
+    }
+}
+
+@media screen and (max-width: 390px) { 
+    .container {
+        width: 96%;
+    }
+    .choice {
+        width: 116px;
+        height: 116px;
+    }
+    .choice img {
+        transform: scale(1);
+    }
+    .player-choice-result, .house-choice-result {
+        min-width: 116px;
+        min-height: 116px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .results { 
+        margin-top: 80px;
+    }
+    .player-choice, .house-choice {
+        font-size: 16px;
+    }
+    .win-lose-text {
+        padding-bottom: 10px;
+    }
+    .rules-img {
+        padding: 24px;
+        width: 96%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .game::before {
+        background: url(./assets/bg-triangle.svg) no-repeat center center / 90% 50%;
+    }
+    .choice {
+        width: 108px;
+        height: 108px;
+    }
+    .player-choice-result, .house-choice-result {
+        min-width: 108px;
+        min-height: 108px;
+    }
+    .rules {
+        margin: 24px 32px;
+    }
+}
+
+/** The height of the smallest device becomes its width in landscape orientation */
+@media only screen and (min-width: 568px) and (max-width: 850px) and (orientation: landscape) { 
+    .rules {
+        justify-content: center;
+        margin: 128px 0;
+    }
+
+}
