@@ -305,7 +305,7 @@ body {
 }
 
 .rules-btn {
-        width: 240.48px; /** 240.48px is the width of the advance game button, so that it looks consistent */
+    width: 240.48px; /** 240.48px is the width of the advance game button, so that it looks consistent */
 }
 
 .rules-btn, .advanced-game-btn {
