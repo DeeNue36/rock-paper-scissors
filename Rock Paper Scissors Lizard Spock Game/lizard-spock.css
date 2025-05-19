@@ -107,8 +107,8 @@ body {
 .game::before {
     content: '';
     position: absolute;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 150%;
     background: url('../assets/bg-pentagon.svg') no-repeat center center/ auto 50%;
     /* background: url('../assets/bg-pentagon.svg') no-repeat center center/50% 60%; * OR  50% 50% */
     /* background: url('../assets/bg-pentagon.svg') no-repeat center center; * OR  50% 50% */
@@ -467,8 +467,8 @@ body {
 
 @media screen and (max-width: 1024px) {
     .container {
-        width: 72%;
-        max-width: 800px;
+        width: 86%;
+        max-width: 872px;
     }
     .results {
         width: 90%;
@@ -481,6 +481,21 @@ body {
 @media screen and (max-width: 850px) {
     .container { 
         width: 90%;
+    }
+    .choice-btn[data-choice="paper"] {
+        margin: 0 48px 48px 0;
+    }
+    .choice-btn[data-choice="scissors"] {
+        margin-bottom: 48px;
+    }
+    .choice-btn[data-choice="rock"] {
+        right: 60%;
+    }
+    .choice-btn[data-choice="lizard"] {
+        left: 60%;
+    }
+    .choice-btn[data-choice="spock"] {
+        margin: 0 0 48px 48px;
     }
     .results {
         margin: 0 auto;
@@ -501,25 +516,73 @@ body {
     }
 }
 
+@media screen and (max-width: 720px) {
+    .choice {
+        width: 132px;
+        height: 132px;
+    }
+    .choice-btn[data-choice="paper"] {
+        margin: 0 0px 48px 0;
+    }
+    .choice-btn[data-choice="spock"] {
+        margin: 0 0 48px 0px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .choice {
+        width: 128px;
+        height: 128px;
+    }
+    .choice-btn[data-choice="scissors"] {
+        margin-bottom: 24px;
+    }
+    .choice-btn[data-choice="rock"] {
+        right: 40%;
+    }
+    .choice-btn[data-choice="lizard"] {
+        left: 40%;
+    }
+}
+
+@media screen and (max-width: 510px) {
+    .rules {
+        flex-direction: column;
+        gap: 32px 0;
+    }
+}
+
 @media screen and (max-width: 480px) {
+    .container {
+        width: 96%;
+    }
     .scores-header {
         margin: 16px 0 0;
         padding: 16px;
     }
     .logo {
-        height: 80px;
-        width: 132px;
+        height: 96px;
     }
     .game::before {
-        /* background: url(./assets/bg-triangle.svg) no-repeat center center / 60% 50%; */
-        background: url(./assets/bg-triangle.svg) no-repeat center center / auto;
+        width: 280px;
+        height: 640px;
+        background: url(../assets/bg-pentagon.svg) no-repeat center center / auto 50%;
     }
     .choice {
-        width: 128px;
-        height: 128px;
+        width: 100px;
+        height: 100px;
     }
     .choice img {
-        transform: scale(1.2);
+        transform: scale(1);
+    }
+    .choice-btn[data-choice="scissors"] {
+        margin-bottom: 0;
+    }
+    .choice-btn[data-choice="rock"] {
+        right: 60%;
+    }
+    .choice-btn[data-choice="lizard"] {
+        left: 60%;
     }
     .results {
         width: 100%;
@@ -559,9 +622,7 @@ body {
         box-shadow: 0 0 0 48px #ffffff16, 0 0 0 96px #ffffff12, 0 0 0 144px #ffffff08;
     }
     .rules {
-        flex-direction: column;
         margin: 24px 48px;
-        gap: 32px 0;
     }
     .game, .winner-or-loser {
         margin-bottom: 36px;
@@ -586,15 +647,29 @@ body {
     .results {
         margin-top: 96px;
     }
+    .choice-btn[data-choice="rock"] {
+        right: 45%;
+    }
+    .choice-btn[data-choice="lizard"] {
+        left: 45%;
+    }
 }
 
 @media screen and (max-width: 393px) {
     .game {
         place-content: space-evenly;
     }
+    .game::before {
+        width: 100%;
+        height: 100%;
+        background: url(../assets/bg-pentagon.svg) no-repeat center center / auto 55%;
+    }
     .choice {
-        width: 118px;
-        height: 118px;
+        width: 96px;
+        height: 96px;
+    }
+    .choice img {
+        transform: scale(0.72);
     }
     .player-choice-result, .house-choice-result {
         min-width: 118px;
@@ -612,13 +687,6 @@ body {
     .container {
         width: 96%;
     }
-    .choice {
-        width: 116px;
-        height: 116px;
-    }
-    .choice img {
-        transform: scale(1);
-    }
     .player-choice-result, .house-choice-result {
         min-width: 116px;
         min-height: 116px;
@@ -626,6 +694,12 @@ body {
 }
 
 @media screen and (max-width: 360px) {
+    .choice-btn[data-choice="rock"] {
+        right: 36%;
+    }
+    .choice-btn[data-choice="lizard"] {
+        left: 36%;
+    }
     .results { 
         margin-top: 80px;
     }
@@ -641,13 +715,35 @@ body {
     }
 }
 
+@media screen and (max-width: 332px) {
+    .rules {
+        margin: 24px 40px;
+    }
+}
+
 @media screen and (max-width: 320px) {
-    .game::before {
-        background: url(./assets/bg-triangle.svg) no-repeat center center / 90% 50%;
+    .container {
+        width: 90%;
     }
     .choice {
-        width: 108px;
-        height: 108px;
+        width: 84px;
+        height: 84px;
+    }
+    .choice-btn[data-choice="spock"] {
+        position: absolute;
+        left: 0;
+    }
+    .choice-btn[data-choice="paper"] { 
+        position: absolute;
+        right: 0;
+    }
+    .choice-btn[data-choice="rock"] {
+        right: 30%;
+        top: 16px;
+    }
+    .choice-btn[data-choice="lizard"] {
+        left: 30%;
+        top: 16px;
     }
     .player-choice-result, .house-choice-result {
         min-width: 108px;
