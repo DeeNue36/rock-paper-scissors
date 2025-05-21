@@ -180,6 +180,14 @@ playAgainBtn.addEventListener('click', () => {
     resultsContainer.classList.toggle('show-winner-or-loser');
 });
 
+//* Disable Play Beginner button if the results div is displayed to prevent users from going back to the beginner game
+const beginnerGameBtn = document.querySelector('.beginner-game-btn');
+beginnerGameBtn.addEventListener('click', function(event) {
+    if (!resultsContainer.classList.contains('hidden')) {
+        event.preventDefault();
+    }
+});
+
 
 //* Show & Hide the Rules Modal
 rulesBtn.addEventListener('click', () => {
