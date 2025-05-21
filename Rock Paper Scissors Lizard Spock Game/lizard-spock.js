@@ -7,32 +7,32 @@ const gameLogic = [
     {
         id: 1,
         name: 'rock',
-        beats: 'lizard',
-        beats: 'scissors'
+        beats: ['lizard', 'scissors'],
+        losesTo: ['paper', 'spock'],
     },
     {
         id: 2,
         name: 'paper',
-        beats: 'rock',
-        beats: 'spock'
+        beats: ['rock','spock'],
+        losesTo: ['scissors', 'lizard'],
     },
     {
         id: 3,
         name: 'scissors',
-        beats: 'paper',
-        beats: 'lizard'
+        beats: ['paper','lizard'],
+        losesTo: ['rock', 'spock'],
     },
     {
         id: 4,
         name: 'lizard',
-        beats: 'spock',
-        beats: 'paper'
+        beats: ['spock', 'paper'],
+        losesTo: ['rock', 'scissors'],
     },
     {
         id: 5,
         name: 'spock',
-        beats: 'scissors',
-        beats: 'rock'
+        beats: ['scissors', 'rock'],
+        losesTo: ['lizard', 'paper'],
     }
 ]
 
@@ -44,6 +44,9 @@ const resultsDivs = document.querySelectorAll('.result');
 const playAgainBtn = document.querySelector('.play-again-btn');
 const winnerOrLoser = document.querySelector('.winner-or-loser');
 const winLoseText = document.querySelector('.win-lose-text');
+
+const scoreCount = document.querySelector('#score-count');
+let playerScore = 0;
 
 
 //* Rock Paper Scissors Lizard Spock Game Logic
@@ -60,7 +63,7 @@ gameButtons.forEach(gameButton => {
 function thePlayerChose(playerChoice) {
     const houseChoice = houseChose();
     displayResults([playerChoice, houseChoice]);
-    // displayWinner([playerChoice, houseChoice]);
+    displayWinner([playerChoice, houseChoice]);
 }
 
 
@@ -87,15 +90,12 @@ function displayResults(results) {
 
 function displayWinner(results) {
     setTimeout(() => {
-        const playerWins = isWinner(results);
-        const houseWins = isWinner(results.reverse()); //? Reverses the array to check if the house won i.e  in the playerChose function displayWinner([playerChoice, houseChoice]) becomes displayWinner([houseChoice, playerChoice])
-
-        if (playerWins) {
-        winLoseText.textContent = 'You Win!';
-        resultsDivs[0].classList.toggle('winner');
-        trackScore(1);
+        if (isPlayerWinner(results)) {
+            winLoseText.textContent = 'You Win!';
+            resultsDivs[0].classList.toggle('winner');
+            trackScore(1);
         } 
-        else if (houseWins) {
+        else if (isHouseWinner(results)) {
             winLoseText.textContent = 'You Lose!';
             resultsDivs[1].classList.toggle('winner');
             trackScore(-1);
@@ -103,17 +103,56 @@ function displayWinner(results) {
         else {
             winLoseText.textContent = 'Draw!';
         }
+
+        winnerOrLoser.classList.toggle('hidden');
+        resultsContainer.classList.toggle('show-winner-or-loser');
+
     }, 1200);
 
-    winnerOrLoser.classList.toggle('hidden');
-    resultsContainer.classList.toggle('show-winner-or-loser');
-
+    
 }
 
-function isWinner(results) {
-    return results[0].beats === results[1].name;
+function isPlayerWinner(results) {
+    return results[0].beats.includes(results[1].name) || results[1].losesTo.includes(results[0].name);
+    /* 
+        results[0] is the player's choice and results[1] is the house's choice
+        results[0].beats is the array/list of choices that the player's choice can beat
+        .includes(results[1].name) checks if the house's choice is included in the beats array/list and returns true or false
+        All together, this line of code checks if the player's choice beats the house's choice
+
+        results[1].losesTo is the array/list of choices that the house's choice can lose to
+        .includes(results[0].name) checks if the player's choice is included in the losesTo array/list and returns true or false
+        All together, this line of code checks if the house's choice loses to the player's choice
+
+        Starting from the OR(||) operator the statement can be removed as the function isHouseWinner does the opposite check i.e . if the house wins
+
+        The function returns true if the player's choice beats the house's choice or the house's choice loses to the player's choice
+    */
 }
 
+function isHouseWinner(results) {
+    return results[1].beats.includes(results[0].name) || results[0].losesTo.includes(results[1].name);
+    /* 
+        results[1] is the house's choice and results[0] is the player's choice
+        results[1].beats is the array/list of choices that the house's choice can beat
+        .includes(results[0].name) checks if the player's choice is included in the beats array/list and returns true or false
+        All together, this line of code checks if the house's choice beats the player's choice
+
+        results[0].losesTo is the array/list of choices that the player's choice can lose to
+        .includes(results[1].name) checks if the house's choice is included in the losesTo array/list and returns true or false
+        All together, this line of code checks if the player's choice loses to the house's choice
+
+        Starting from the OR(||) operator the statement can be removed as the function isPlayerWinner does the opposite check i.e . if the player wins
+
+        The function returns true if the house's choice beats the player's choice or the player's choice loses to the house's choice
+    */
+}
+
+
+function trackScore(points) {
+    playerScore += points;
+    scoreCount.textContent = playerScore;
+}
 
 
 //* Show & Hide the Rules Modal
