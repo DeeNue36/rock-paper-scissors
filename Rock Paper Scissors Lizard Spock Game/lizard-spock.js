@@ -36,14 +36,17 @@ const gameLogic = [
     }
 ]
 
+
 const gameButtons = document.querySelectorAll('.choice-btn');
 const gameArea = document.querySelector('.game');
 const resultsContainer = document.querySelector('.results');
 const resultsDivs = document.querySelectorAll('.result');
 
-const playAgainBtn = document.querySelector('.play-again-btn');
+
+const playAgainBtn = document.querySelector('.new-game-btn');
 const winnerOrLoser = document.querySelector('.winner-or-loser');
 const winLoseText = document.querySelector('.win-lose-text');
+
 
 const scoreCount = document.querySelector('#score-count');
 let playerScore = 0;
@@ -88,6 +91,7 @@ function displayResults(results) {
     resultsContainer.classList.toggle('hidden');
 }
 
+
 function displayWinner(results) {
     setTimeout(() => {
         if (isPlayerWinner(results)) {
@@ -112,6 +116,7 @@ function displayWinner(results) {
     
 }
 
+
 function isPlayerWinner(results) {
     return results[0].beats.includes(results[1].name) || results[1].losesTo.includes(results[0].name);
     /* 
@@ -129,6 +134,7 @@ function isPlayerWinner(results) {
         The function returns true if the player's choice beats the house's choice or the house's choice loses to the player's choice
     */
 }
+
 
 function isHouseWinner(results) {
     return results[1].beats.includes(results[0].name) || results[0].losesTo.includes(results[1].name);
@@ -153,6 +159,26 @@ function trackScore(points) {
     playerScore += points;
     scoreCount.textContent = playerScore;
 }
+
+
+playAgainBtn.addEventListener('click', () => {
+    //? Show the game div and hide the results div
+    gameArea.classList.toggle('hidden');
+    resultsContainer.classList.toggle('hidden');
+
+    //? Clear the player's choice and the house's choice divs
+    resultsDivs.forEach(resultDiv => {
+        resultDiv.innerHTML = '';
+        resultDiv.classList.remove('winner');
+    });
+
+    //? Clear the winner or loser text
+    winLoseText.textContent = "";
+
+    //? Hide the winner or loser div
+    winnerOrLoser.classList.toggle('hidden');
+    resultsContainer.classList.toggle('show-winner-or-loser');
+});
 
 
 //* Show & Hide the Rules Modal
