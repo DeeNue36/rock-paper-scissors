@@ -85,6 +85,35 @@ function displayResults(results) {
     resultsContainer.classList.toggle('hidden');
 }
 
+function displayWinner(results) {
+    setTimeout(() => {
+        const playerWins = isWinner(results);
+        const houseWins = isWinner(results.reverse()); //? Reverses the array to check if the house won i.e  in the playerChose function displayWinner([playerChoice, houseChoice]) becomes displayWinner([houseChoice, playerChoice])
+
+        if (playerWins) {
+        winLoseText.textContent = 'You Win!';
+        resultsDivs[0].classList.toggle('winner');
+        trackScore(1);
+        } 
+        else if (houseWins) {
+            winLoseText.textContent = 'You Lose!';
+            resultsDivs[1].classList.toggle('winner');
+            trackScore(-1);
+        } 
+        else {
+            winLoseText.textContent = 'Draw!';
+        }
+    }, 1200);
+
+    winnerOrLoser.classList.toggle('hidden');
+    resultsContainer.classList.toggle('show-winner-or-loser');
+
+}
+
+function isWinner(results) {
+    return results[0].beats === results[1].name;
+}
+
 
 
 //* Show & Hide the Rules Modal
