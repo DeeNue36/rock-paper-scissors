@@ -529,6 +529,24 @@ body {
     }
 }
 
+@media screen and (max-width: 693px) {
+    .results {
+        width: 100%;
+        height: 100%;
+        gap: 24px 0;
+        place-content: center;
+        margin-top: 128px;
+    }
+    .results.show-winner-or-loser {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: 
+            "player-picked house-picked"
+            "player-picked-title house-picked-title"
+            "winner-or-loser winner-or-loser"
+        ;
+    }
+}
+
 @media screen and (max-width: 580px) {
     .choice {
         width: 128px;
@@ -584,28 +602,13 @@ body {
     .choice-btn[data-choice="lizard"] {
         left: 60%;
     }
-    .results {
-        width: 100%;
-        height: 100%;
-        gap: 24px 0;
-        place-content: center;
-        margin-top: 128px;
-    }
-    .results.show-winner-or-loser {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-areas: 
-            "player-picked house-picked"
-            "player-picked-title house-picked-title"
-            "winner-or-loser winner-or-loser"
-        ;
-    }
     .player-choice, .house-choice {
         font-size: 20px;
     }
     .player-choice-result, .house-choice-result {
         transform: scale(0.84);
-        min-width: 128px;
-        min-height: 128px;
+        min-width: 108px;
+        min-height: 108px;
     }
     .winner-or-loser {
         margin-top: 48px;
@@ -677,10 +680,6 @@ body {
     .choice img {
         transform: scale(0.72);
     }
-    .player-choice-result, .house-choice-result {
-        min-width: 118px;
-        min-height: 118px;
-    }
     .modal {
         width: 96%;
     }
@@ -693,10 +692,6 @@ body {
 @media screen and (max-width: 390px) { 
     .container {
         width: 96%;
-    }
-    .player-choice-result, .house-choice-result {
-        min-width: 116px;
-        min-height: 116px;
     }
 }
 
@@ -753,8 +748,8 @@ body {
         top: 16px;
     }
     .player-choice-result, .house-choice-result {
-        min-width: 108px;
-        min-height: 108px;
+        min-width: 96px;
+        min-height: 96px;
     }
     .rules {
         margin: 24px 32px;
