@@ -182,9 +182,9 @@ playAgainBtn.addEventListener('click', () => {
 
 //* Disable Play Beginner button if the results div is displayed to prevent users from going back to the beginner game
 const beginnerGameBtn = document.querySelector('.beginner-game-btn');
-beginnerGameBtn.addEventListener('click', function(event) {
+beginnerGameBtn.addEventListener('click', function(e) {
     if (!resultsContainer.classList.contains('hidden')) {
-        event.preventDefault();
+        e.preventDefault(); //? Prevents the default action of the button when the result is being displayed
     }
 });
 
